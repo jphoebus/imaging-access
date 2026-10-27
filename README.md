@@ -15,12 +15,12 @@ Before a hospital, clinic, or imaging company adds an MRI or CT scanner, some st
 
 ## What to watch
 
+- Fall 2026: Pennsylvania Senate. HB 1460, which would add review of for-profit health facility acquisitions, awaits a Senate floor vote. It is not a CON bill and does not cover imaging equipment.
 - Late 2026 to 2027: Georgia Supreme Court. A decision in the Amera Imaging cases, argued October 15, 2026, along with pending Court of Appeals cases, could clarify how far the 2024 hospital and physician exemptions reach for independent imaging providers.
 - January 1, 2027: Virginia. Board of Health regulations for expedited "medical desert" review are due, following State Health Services Plan Task Force recommendations due October 1, 2026. Whether imaging projects qualify will shape what the new process means for rural MRI.
 - 2027 session: Minnesota. A 2026 bill to repeal the hospital construction moratorium could be reintroduced. It covers hospital beds, not imaging.
 - 2027 session: Washington. Lawmakers may act on the Department of Health's 2025 modernization recommendations, which focus on emergency and urgent care, not imaging.
 - 2027 session: Maryland. The 2026 bills on health care transactions and psychiatric services died in committee and could return; none touch imaging.
-- Fall 2026: Pennsylvania Senate. HB 1460, which would add review of for-profit health facility acquisitions, awaits a Senate floor vote. It is not a CON bill and does not cover imaging equipment.
 
 The open question is whether states keep using need review to manage where scanners go, or shift toward licensing and reporting that let capacity follow demand while the state keeps watch.
 

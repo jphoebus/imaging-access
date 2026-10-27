@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where an MRI Can Go: State Approval Rules for Advanced Imaging in Nine States | Joshua Phoebus</title>
+<meta name="description" content="How Pennsylvania, Virginia, Ohio, Maryland, Georgia, Washington, Colorado, Minnesota, and Arizona decide whether a hospital, clinic, or imaging company can add an MRI or CT scanner: certificate-of-need rules, mobile units, dollar thresholds, and rural access. Current as of October 26, 2026.">
+<meta property="og:title" content="Where an MRI Can Go: State Approval Rules for Advanced Imaging in Nine States">
+<meta property="og:description" content="How nine states decide whether a hospital, clinic, or imaging company can add an MRI or CT scanner: certificate-of-need rules, mobile units, dollar thresholds, and rural access.">
+<meta property="og:image" content="https://jphoebus.github.io/imaging-access/imaging-preview.png">
+<meta property="og:url" content="https://jphoebus.github.io/imaging-access/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --limestone: #EDF0F1;
+    --paper: #FFFFFF;
+    --ink: #1B2631;
+    --slate: #52606D;
+    --rule: #CBD2D9;
+    --accent: #1F5C4A;
+    --accent-soft: #DCEBE5;
+    --font: "Public Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--limestone);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .measure { max-width: 68ch; }
+
+  /* Header */
+  header { padding: 64px 0 40px; }
+  h1 {
+    font-size: clamp(2rem, 4.6vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+    max-width: 18ch;
+  }
+  .lede { font-size: 1.15rem; color: var(--slate); margin: 0; }
+
+  /* Where each state stands */
+  .standing {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 3px solid var(--ink);
+    margin-top: 40px;
+  }
+  .standing div {
+    padding: 16px 16px 20px 0;
+    border-right: 1px solid var(--rule);
+    padding-left: 16px;
+  }
+  .standing div:first-child { padding-left: 0; }
+  .standing div:last-child { border-right: 0; }
+  .standing strong { display: block; font-size: 1.25rem; font-weight: 700; }
+  .standing span { display: block; color: var(--slate); font-size: 0.95rem; }
+  .standing time { display: block; font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: 6px; }
+
+  /* Comparison */
+  section { padding: 48px 0; }
+  h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.01em; margin: 0 0 12px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 20px; align-items: center; }
+  .filters p { margin: 0 8px 0 0; color: var(--slate); font-size: 0.95rem; }
+  .chip {
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1.5px solid var(--accent);
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+  }
+  .chip[aria-pressed="false"] { background: transparent; color: var(--accent); }
+  .table-scroll {
+    overflow-x: auto;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+  }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 0.92rem; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
+  thead th {
+    font-size: 1rem;
+    font-weight: 700;
+    border-bottom: 2px solid var(--ink);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+  }
+  tbody th {
+    font-weight: 600;
+    color: var(--slate);
+    width: 170px;
+    position: sticky;
+    left: 0;
+    background: var(--paper);
+  }
+  tr.group th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  [hidden] { display: none !important; }
+  td.empty { color: var(--slate); font-style: italic; }
+  td.sources a { display: block; word-break: break-word; margin-bottom: 4px; }
+  .status-msg { padding: 24px; color: var(--slate); }
+
+  /* Analysis */
+  .analysis { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .analysis h3 { font-size: 1.1rem; font-weight: 700; margin: 24px 0 4px; }
+  .analysis p { margin: 0; }
+  .question {
+    margin-top: 32px;
+    padding-left: 20px;
+    border-left: 4px solid var(--accent);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  ul.watch { padding-left: 1.1em; margin: 12px 0 0; }
+  ul.watch li { margin-bottom: 10px; }
+
+  footer { border-top: 1px solid var(--rule); padding: 40px 0 64px; color: var(--slate); font-size: 0.95rem; }
+  footer p { margin: 0 0 12px; }
+
+  .standing .detail { display: block; font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-top: 6px; }
+  th[data-state], td[data-state] { min-width: 210px; }
+  @media (min-width: 801px) {
+    .standing div:nth-child(5n+1) { padding-left: 0; }
+    .standing div:nth-child(5n) { border-right: 0; }
+    .standing div:nth-child(n+6) { border-top: 1px solid var(--rule); }
+  }
+  @media (max-width: 800px) {
+    .standing { grid-template-columns: 1fr 1fr; }
+    .standing div { border-right: 0; border-bottom: 1px solid var(--rule); padding-left: 0; }
+    .analysis { grid-template-columns: 1fr; gap: 16px; }
+    header { padding-top: 40px; }
+  }
+  @media (max-width: 560px) {
+    .standing { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .filters { display: none; }
+    body { background: #fff; }
+    .table-scroll { overflow: visible; border: 0; }
+    thead th, tbody th { position: static; }
+  }
+  .home-link { margin: 0 0 16px; font-size: 0.95rem; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="home-link"><a href="https://jphoebus.github.io/">← All projects</a></p>
+    <h1>Where an MRI can go: state approval rules for advanced imaging</h1>
+    <p class="lede measure">Before a hospital, clinic, or imaging company adds an MRI or CT scanner, some states require permission first, through a certificate-of-need (CON) review that asks whether the region needs the capacity. Others require only a license, a spending report, or radiation-safety registration, and some require nothing beyond what any medical practice already needs. This page compares nine states: Pennsylvania, Virginia, Ohio, Maryland, and Georgia, plus Washington, Colorado, Minnesota, and Arizona. It covers whether state approval applies to MRI, CT, and mobile units, what dollar thresholds apply, what changed from 2023 to 2026, and what the rules mean for putting a scanner in a rural county. Current as of October 26, 2026.</p>
+
+    <div class="standing" aria-label="State summaries">
+      <div><strong>Pennsylvania</strong><span>No CON since December 1996</span><span class="detail">CT registers with DEP within 30 days</span></div>
+      <div><strong>Virginia</strong><span>Certificate of Public Need covers MRI, CT, and mobile units</span><span class="detail">Volume standards, including for mobile units</span></div>
+      <div><strong>Ohio</strong><span>CON limited to long-term care since 1998</span><span class="detail">No imaging review</span></div>
+      <div><strong>Maryland</strong><span>CON active, but MRI and CT excluded by statute</span><span class="detail">Major medical equipment license from OHCQ</span></div>
+      <div><strong>Georgia</strong><span>CON active; hospital and physician imaging exempt since July 2024</span><span class="detail">Freestanding imaging centers still need CON</span></div>
+      <div><strong>Washington</strong><span>CON active, but imaging equipment not covered</span><span class="detail">Reviewed only as part of a new covered facility</span></div>
+      <div><strong>Colorado</strong><span>No CON</span><span class="detail">CT radiation registration only</span></div>
+      <div><strong>Minnesota</strong><span>No CON</span><span class="detail">Reports imaging purchases over $1 million and annual use</span></div>
+      <div><strong>Arizona</strong><span>No facility CON (ambulance only)</span><span class="detail">Some outpatient centers need an imaging service license</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="comparison">
+    <div class="wrap">
+      <h2>Side-by-side comparison</h2>
+      <p class="measure">Choose which states to compare. On phones, scroll the table sideways.</p>
+      <div class="filters" id="filters" role="group" aria-label="States to compare"><p>Showing:</p><button class="chip" type="button" aria-pressed="true" data-state="pennsylvania">Pennsylvania</button><button class="chip" type="button" aria-pressed="true" data-state="virginia">Virginia</button><button class="chip" type="button" aria-pressed="true" data-state="ohio">Ohio</button><button class="chip" type="button" aria-pressed="true" data-state="maryland">Maryland</button><button class="chip" type="button" aria-pressed="true" data-state="georgia">Georgia</button><button class="chip" type="button" aria-pressed="true" data-state="washington">Washington</button><button class="chip" type="button" aria-pressed="true" data-state="colorado">Colorado</button><button class="chip" type="button" aria-pressed="true" data-state="minnesota">Minnesota</button><button class="chip" type="button" aria-pressed="true" data-state="arizona">Arizona</button></div>
+      <div class="table-scroll" tabindex="0" aria-label="Comparison table">
+        <table id="table">
+<thead><tr><th scope="col"></th>
+<th scope="col" data-state="pennsylvania">Pennsylvania</th>
+<th scope="col" data-state="virginia">Virginia</th>
+<th scope="col" data-state="ohio">Ohio</th>
+<th scope="col" data-state="maryland">Maryland</th>
+<th scope="col" data-state="georgia">Georgia</th>
+<th scope="col" data-state="washington">Washington</th>
+<th scope="col" data-state="colorado">Colorado</th>
+<th scope="col" data-state="minnesota">Minnesota</th>
+<th scope="col" data-state="arizona">Arizona</th>
+</tr></thead><tbody>
+<tr class="group"><th colspan="10" scope="colgroup">The program</th></tr>
+<tr><th scope="row">CON program today</th>
+<td data-state="pennsylvania">None; sunset Dec. 18, 1996</td>
+<td data-state="virginia">Yes: Certificate of Public Need (COPN), Va. Code §32.1-102.1 et seq.</td>
+<td data-state="ohio">Long-term care only; other services phased out 1995–1998</td>
+<td data-state="maryland">Yes: Health-General §19-120 et seq.</td>
+<td data-state="georgia">Yes: O.C.G.A. Title 31, Ch. 6; rules 111-2-2</td>
+<td data-state="washington">Yes: RCW 70.38</td>
+<td data-state="colorado">None; repealed in the 1980s</td>
+<td data-state="minnesota">None since June 30, 1984; hospital construction moratorium remains</td>
+<td data-state="arizona">None for facilities; ambulance certificate of necessity remains</td>
+</tr>
+<tr><th scope="row">Who administers it</th>
+<td class="empty" data-state="pennsylvania">—</td>
+<td data-state="virginia">Virginia Department of Health, Division of COPN</td>
+<td data-state="ohio">Ohio Department of Health</td>
+<td data-state="maryland">Maryland Health Care Commission (MHCC)</td>
+<td data-state="georgia">Department of Community Health (DCH)</td>
+<td data-state="washington">Department of Health</td>
+<td class="empty" data-state="colorado">—</td>
+<td class="empty" data-state="minnesota">— (Department of Health runs reporting)</td>
+<td class="empty" data-state="arizona">— (DHS runs licensing)</td>
+</tr>
+<tr class="group"><th colspan="10" scope="colgroup">Imaging coverage</th></tr>
+<tr><th scope="row">MRI</th>
+<td data-state="pennsylvania">No review</td>
+<td data-state="virginia">Review required to add a service or new equipment; replacement registers instead</td>
+<td data-state="ohio">No review</td>
+<td data-state="maryland">Excluded from CON; equipment license required</td>
+<td data-state="georgia">Depends on owner: hospitals and qualifying physician practices exempt at any cost; freestanding imaging centers need CON</td>
+<td data-state="washington">Not covered</td>
+<td data-state="colorado">No review</td>
+<td data-state="minnesota">No approval; purchases over $1M reported</td>
+<td data-state="arizona">No need review; some outpatient centers license imaging as a service</td>
+</tr>
+<tr><th scope="row">CT</th>
+<td data-state="pennsylvania">DEP radiation registration</td>
+<td data-state="virginia">Same as MRI; new fixed CT requires an average of 7,400 procedures per existing scanner in the region (MRI: 5,000)</td>
+<td data-state="ohio">No review</td>
+<td data-state="maryland">Same as MRI</td>
+<td data-state="georgia">Same as MRI</td>
+<td data-state="washington">Not covered</td>
+<td data-state="colorado">CDPHE radiation registration and shielding review</td>
+<td data-state="minnesota">Same as MRI, plus radiation registration</td>
+<td data-state="arizona">Radiation registration with shielding plans</td>
+</tr>
+<tr><th scope="row">Mobile units</th>
+<td data-state="pennsylvania">No review (CT units keep a schedule on site for DEP)</td>
+<td data-state="virginia">Covered; each new host site needs its own COPN. Separate volume standards: 2,400 procedures for mobile MRI, 4,800 for mobile CT</td>
+<td data-state="ohio">No review</td>
+<td data-state="maryland">Not addressed separately</td>
+<td data-state="georgia">Treated like fixed units under the owner and site test; MRI exemption decisions on appeal, with Supreme Court argument held Oct. 15, 2026</td>
+<td data-state="washington">Not addressed</td>
+<td data-state="colorado">No review</td>
+<td data-state="minnesota">Included in annual imaging use reports</td>
+<td data-state="arizona">Registered as a mobile machine type for CT</td>
+</tr>
+<tr class="group"><th colspan="10" scope="colgroup">Triggers</th></tr>
+<tr><th scope="row">Dollar threshold</th>
+<td data-state="pennsylvania">None</td>
+<td data-state="virginia">$15M non-hospital capital (indexed; $22.2M in 2024), but imaging triggers on service or equipment, not dollars</td>
+<td data-state="ohio">$4M for long-term care only</td>
+<td data-state="maryland">Equipment excluded; other thresholds don&#x27;t reach imaging</td>
+<td data-state="georgia">Equipment thresholds removed July 1, 2024</td>
+<td data-state="washington">$1M indexed minimum, now nursing homes only</td>
+<td data-state="colorado">None</td>
+<td data-state="minnesota">$1M reporting threshold (not approval)</td>
+<td data-state="arizona">None</td>
+</tr>
+<tr><th scope="row">Other review or reporting</th>
+<td class="empty" data-state="pennsylvania">—</td>
+<td data-state="virginia">Replacement equipment registered 30 days before contract</td>
+<td class="empty" data-state="ohio">—</td>
+<td data-state="maryland">License requires MHCC exemption or non-coverage finding</td>
+<td data-state="georgia">DCH determinations on exemption requests</td>
+<td data-state="washington">Covered only if part of a new hospital or other CON facility</td>
+<td data-state="colorado">Medicaid prior authorization for most CT and MRI</td>
+<td data-state="minnesota">Annual utilization report from non-hospital imaging sites</td>
+<td data-state="arizona">Outpatient treatment center licensing, with exemptions for physician offices</td>
+</tr>
+<tr class="group"><th colspan="10" scope="colgroup">Recent changes</th></tr>
+<tr><th scope="row">2023–2026 reform</th>
+<td data-state="pennsylvania">No CON bills; HB 1460 on facility purchases (not CON) passed the House in 2025 and was amended in Senate committee in June 2026</td>
+<td data-state="virginia">2025: underserved-area expedited review study (Ch. 397); rural equipment phase-out (SB 910) failed (as reported). 2026: expedited review for &quot;medical desert&quot; projects enacted (Chs. 779, 780), regulations due Jan. 1, 2027</td>
+<td data-state="ohio">SB 144 (2024), long-term care only</td>
+<td data-state="maryland">2026 transaction and psychiatric bills died; intermediate care facility bill enacted; none on imaging</td>
+<td data-state="georgia">HB 1339 (2024) exempted hospital and physician imaging and removed thresholds; Senate plan to free new imaging centers rejected</td>
+<td data-state="washington">Modernization bill (E2SHB 2128) not enacted in 2024; study done by budget proviso; 2025 DOH report has no imaging recommendation</td>
+<td data-state="colorado">Hospital transparency (2023), critical access license (2024); no CON bills</td>
+<td data-state="minnesota">HF 4782 (2026) would repeal the hospital moratorium; introduced only</td>
+<td data-state="arizona">Ambulance bills only</td>
+</tr>
+<tr class="group"><th colspan="10" scope="colgroup">Rural access</th></tr>
+<tr><th scope="row">Rural provisions</th>
+<td data-state="pennsylvania">None needed</td>
+<td data-state="virginia">No imaging carve-out; staff weigh rural cases individually</td>
+<td data-state="ohio">None needed</td>
+<td data-state="maryland">None needed</td>
+<td data-state="georgia">Rural hospital exemptions added in 2024; rural imaging centers excluded from one expansion exemption</td>
+<td data-state="washington">Rural provisions cover hospital beds only</td>
+<td data-state="colorado">None needed</td>
+<td data-state="minnesota">None needed</td>
+<td data-state="arizona">Rural debate centers on ambulances</td>
+</tr>
+<tr><th scope="row">What it means for a rural MRI</th>
+<td data-state="pennsylvania">A fixed or mobile MRI needs no state need approval</td>
+<td data-state="virginia">A new MRI, even a part-time mobile unit, generally needs COPN</td>
+<td data-state="ohio">No state CON approval</td>
+<td data-state="maryland">No CON; an equipment license is required</td>
+<td data-state="georgia">A hospital or qualifying practice can add one; an independent imaging company generally needs CON</td>
+<td data-state="washington">No CON unless part of a new covered facility</td>
+<td data-state="colorado">No state approval</td>
+<td data-state="minnesota">No approval; report spending over $1M and annual use</td>
+<td data-state="arizona">No need review; license depends on the setting</td>
+</tr>
+<tr class="group"><th colspan="10" scope="colgroup">Status and sources</th></tr>
+<tr><th scope="row">Still to verify</th>
+<td class="empty" data-state="pennsylvania">—</td>
+<td data-state="virginia">2025–26 indexed thresholds; whether the Task Force&#x27;s Oct. 1, 2026 recommendations were delivered</td>
+<td data-state="ohio">Radiation registration details</td>
+<td data-state="maryland">Current non-hospital threshold; how mobile units are licensed</td>
+<td data-state="georgia">Appellate decisions pending</td>
+<td data-state="washington">Any 2027 bills acting on the 2025 report</td>
+<td data-state="colorado">Exact repeal year</td>
+<td class="empty" data-state="minnesota">—</td>
+<td data-state="arizona">Exact repeal year; final status of 2025–26 ambulance bills</td>
+</tr>
+<tr><th scope="row">Sources</th>
+<td class="sources" data-state="pennsylvania"><a href="https://www.legis.state.pa.us/WU01/LI/LI/US/PDF/1979/0/0048..PDF" rel="noopener">legis.state.pa.us</a><a href="https://www.pa.gov/services/dep/register-a-radiation-producing-machine-with-the-department-of-environmental-protection.html" rel="noopener">pa.gov</a><a href="https://www.ncsl.org/health/certificate-of-need-state-laws" rel="noopener">ncsl.org</a><a href="https://www.palegis.us/legislation/bills/2025/hb1460" rel="noopener">palegis.us</a></td>
+<td class="sources" data-state="virginia"><a href="https://law.lis.virginia.gov/vacode/32.1-102.1:3/" rel="noopener">law.lis.virginia.gov</a><a href="https://law.lis.virginia.gov/admincodefull/title12/agency5/chapter230" rel="noopener">law.lis.virginia.gov</a><a href="https://www.townhall.virginia.gov/L/ViewNotice.cfm?gnid=2807" rel="noopener">townhall.virginia.gov</a><a href="https://www.vdh.virginia.gov/content/uploads/sites/96/2024/01/COPN-Request-No-VA-8724-Staff-Report.pdf" rel="noopener">vdh.virginia.gov</a><a href="https://cardinalnews.org/2025/01/15/stanleys-bill-to-reduce-regulations-on-health-care-provider-access-to-machinery-killed-in-subcommittee/" rel="noopener">cardinalnews.org</a><a href="https://law.lis.virginia.gov/uncodifiedactssub/2025/session1/chapter397/" rel="noopener">law.lis.virginia.gov</a><a href="https://origin.vpap.org/bills/88923/SB239" rel="noopener">origin.vpap.org</a><a href="https://vdh.virginia.gov/content/uploads/sites/96/2024/08/COPN-Request-No-VA-8741-Staff-Report.pdf" rel="noopener">vdh.virginia.gov</a><a href="https://law.lis.virginia.gov/uncodifiedacts/2026/session1/chapter779/" rel="noopener">law.lis.virginia.gov</a></td>
+<td class="sources" data-state="ohio"><a href="https://codes.ohio.gov/ohio-revised-code/section-3702.511" rel="noopener">codes.ohio.gov</a><a href="https://codes.ohio.gov/assets/laws/revised-code/authenticated/37/3702/3702.593/10-24-2024/3702.593-10-24-2024.pdf" rel="noopener">codes.ohio.gov</a></td>
+<td class="sources" data-state="maryland"><a href="https://mgaleg.maryland.gov/2026RS/bills/hb/hb0632F.pdf" rel="noopener">mgaleg.maryland.gov</a><a href="https://health.maryland.gov/ohcq/Pages/Major-Medical-Equipment-Providers.aspx" rel="noopener">health.maryland.gov</a><a href="https://health.maryland.gov/ohcq/docs/Applications/APPLICATION_MME-License-03.24.2026-A.pdf" rel="noopener">health.maryland.gov</a></td>
+<td class="sources" data-state="georgia"><a href="https://rules.sos.ga.gov/gac/111-2-2" rel="noopener">rules.sos.ga.gov</a><a href="https://dch.georgia.gov/document/document/7-7-2026-tracking-report/download" rel="noopener">dch.georgia.gov</a><a href="https://www.wabe.org/georgia-senate-lawmakers-give-final-passage-to-bill-to-loosen-health-permit-rules/" rel="noopener">wabe.org</a><a href="https://maynardnexsen.com/publication-georgia-health-law-update-con-reform" rel="noopener">maynardnexsen.com</a><a href="https://dch.georgia.gov/document/report/10-20-2026-tracking-report/download" rel="noopener">dch.georgia.gov</a><a href="https://dch.georgia.gov/document/document/2026-threshold/download" rel="noopener">dch.georgia.gov</a></td>
+<td class="sources" data-state="washington"><a href="https://app.leg.wa.gov/RCW/default.aspx?cite=70.38&amp;full=true" rel="noopener">app.leg.wa.gov</a><a href="https://doh.wa.gov/sites/default/files/2025-07/2025.07.30-CN-ProvisoReport.pdf" rel="noopener">doh.wa.gov</a></td>
+<td class="sources" data-state="colorado"><a href="https://cdphe.colorado.gov/hm/xray-machine-facilities" rel="noopener">cdphe.colorado.gov</a><a href="https://hcpf.colorado.gov/hospital-transparency" rel="noopener">hcpf.colorado.gov</a><a href="https://www.ncsl.org/health/certificate-of-need-state-laws" rel="noopener">ncsl.org</a></td>
+<td class="sources" data-state="minnesota"><a href="https://www.revisor.mn.gov/statutes/cite/144.565/pdf" rel="noopener">revisor.mn.gov</a><a href="https://www.health.state.mn.us/data/economics/hccis/reporting/capexp/index.html" rel="noopener">health.state.mn.us</a><a href="https://www.revisor.mn.gov/bills/94/2026/0/HF/4782" rel="noopener">revisor.mn.gov</a></td>
+<td class="sources" data-state="arizona"><a href="https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R9-10-1002" rel="noopener">law.cornell.edu</a><a href="https://www.azdhs.gov/documents/licensing/radiation-regulatory/forms/xray-medical-unit-info.pdf" rel="noopener">azdhs.gov</a><a href="https://www.ncsl.org/health/certificate-of-need-state-laws" rel="noopener">ncsl.org</a></td>
+</tr>
+<tr><th scope="row">Last updated</th>
+<td data-state="pennsylvania">2026-10-26</td>
+<td data-state="virginia">2026-10-26</td>
+<td data-state="ohio">2026-10-26</td>
+<td data-state="maryland">2026-10-26</td>
+<td data-state="georgia">2026-10-26</td>
+<td data-state="washington">2026-10-26</td>
+<td data-state="colorado">2026-10-26</td>
+<td data-state="minnesota">2026-10-26</td>
+<td data-state="arizona">2026-10-26</td>
+</tr>
+</tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="analysis">
+    <div class="wrap">
+      <div class="analysis">
+        <div>
+          <h2>What stands out</h2>
+          <h3>Four ways of deciding where a scanner goes</h3>
+          <p>Only Virginia still runs a full need review for MRI and CT, with drive-time and procedure-volume standards. Georgia reviews imaging based on who owns the scanner: hospitals and physician practices are exempt at any cost, while independent imaging centers still need a certificate. Maryland, Minnesota, and Arizona skip need review but keep a license or reporting requirement. Pennsylvania, Ohio, Washington, and Colorado leave imaging to radiation-safety rules alone.</p>
+          <h3>Mobile units are where the rules get tested</h3>
+          <p>A mobile MRI can serve several rural hospitals in a week, which makes it one of the more practical ways to bring advanced imaging to small communities. Virginia reviews the site rather than the scanner: each new host site needs its own certificate, with volume standards prorated by days on site. In Georgia, decisions on whether independent providers can add mobile or exempt MRI units are before the state&#x27;s appellate courts, and the Supreme Court heard argument in four of those cases on October 15, 2026. In most of the other states, a mobile unit is treated the same as a fixed one.</p>
+          <h3>Rural access is entering the debate through other doors</h3>
+          <p>No state on this list has a rural exemption written specifically for imaging. Virginia has gone furthest in a different direction: a 2025 law asked a state task force to recommend faster review in underserved areas, and 2026 laws created expedited review for projects in &quot;medical deserts,&quot; with regulations due January 1, 2027. Georgia&#x27;s 2024 reform eased rules for rural hospitals but kept imaging centers in rural counties under review. The rural question is being decided through hospital and access policy rather than imaging policy.</p>
+          <h3>Reporting is the quieter alternative</h3>
+          <p>Minnesota tracks imaging capacity without approving it: providers report purchases over $1 million, and non-hospital imaging sites, including mobile operators, report their use every year. Maryland requires an equipment license tied to a state finding. These approaches let a state see where capacity is growing without deciding in advance whether it should.</p>
+        </div>
+        <div>
+          <h2>What to watch</h2>
+          <ul class="watch">
+            <li>Late 2026 to 2027: Georgia Supreme Court. A decision in the Amera Imaging cases, argued October 15, 2026, along with pending Court of Appeals cases, could clarify how far the 2024 hospital and physician exemptions reach for independent imaging providers.</li>
+            <li>January 1, 2027: Virginia. Board of Health regulations for expedited &quot;medical desert&quot; review are due, following State Health Services Plan Task Force recommendations due October 1, 2026. Whether imaging projects qualify will shape what the new process means for rural MRI.</li>
+            <li>2027 session: Minnesota. A 2026 bill to repeal the hospital construction moratorium could be reintroduced. It covers hospital beds, not imaging.</li>
+            <li>2027 session: Washington. Lawmakers may act on the Department of Health&#x27;s 2025 modernization recommendations, which focus on emergency and urgent care, not imaging.</li>
+            <li>2027 session: Maryland. The 2026 bills on health care transactions and psychiatric services died in committee and could return; none touch imaging.</li>
+            <li>Fall 2026: Pennsylvania Senate. HB 1460, which would add review of for-profit health facility acquisitions, awaits a Senate floor vote. It is not a CON bill and does not cover imaging equipment.</li>
+          </ul>
+          <p class="question">The open question is whether states keep using need review to manage where scanners go, or shift toward licensing and reporting that let capacity follow demand while the state keeps watch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap measure">
+    <p>Compiled by Joshua Phoebus, former Director of Performance and Transformation in the Office of Pennsylvania Governor Tom Wolf. <a href="https://www.linkedin.com/in/joshuaphoebus">LinkedIn</a> · <a href="https://www.joshuaphoebusllc.com">Website</a></p>
+    <p>Related: <a href="https://jphoebus.github.io/data-center-legislation-2026/">State data center legislation 2026</a> · <a href="https://jphoebus.github.io/large-load-tariffs/">Large-load tariffs</a> · <a href="https://jphoebus.github.io/state-incentive-comparison/">State data center incentives</a> · <a href="https://jphoebus.github.io/tax-incentive-evaluation/">Tax incentive evaluation</a> · <a href="https://jphoebus.github.io/">All projects</a></p>
+    <p>Where a detail could not be confirmed, the table says so. The underlying data is available as a <a href="imaging_access_data.csv">CSV</a>. For policy analysis; not legal or regulatory advice.</p>
+  </div>
+</footer>
+
+<script>
+  // Each state button shows or hides that state's column. The table itself is plain HTML,
+  // so it displays even if this script never runs.
+  document.querySelectorAll("#filters .chip").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var on = b.getAttribute("aria-pressed") === "true";
+      b.setAttribute("aria-pressed", on ? "false" : "true");
+      document.querySelectorAll('#table [data-state="' + b.dataset.state + '"]').forEach(function (c) { c.hidden = on; });
+    });
+  });
+</script>
+<script data-goatcounter="https://jphoebus.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
